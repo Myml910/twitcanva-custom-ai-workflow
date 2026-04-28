@@ -70,6 +70,16 @@ const VIDEO_MODELS = [
 // aspectRatios: Supported aspect ratios for the model
 const IMAGE_MODELS = [
     {
+    id: 'custom-image-gpt-image-2',
+    name: 'T8star GPT Image 2',
+    provider: 'custom',
+    supportsImageToImage: true,
+    supportsMultiImage: true,
+    recommended: true,
+    resolutions: ['Auto', '2k', '4k'],
+    aspectRatios: ['Auto', '1:1', '16:9', '9:16', '4:3', '3:4', '3:2', '2:3', '21:9']
+    },
+    {
         id: 'gpt-image-1.5',
         name: 'GPT Image 1.5',
         provider: 'openai',
@@ -79,16 +89,6 @@ const IMAGE_MODELS = [
         resolutions: ["Auto", "1K", "2K", "4K"],
         // OpenAI uses exact pixel sizes, not aspect ratios
         aspectRatios: ["Auto", "1024x1024", "1536x1024", "1024x1536"]
-    },
-    {
-        id: 'custom-image-gpt-image-2',
-        name: 'T8star GPT Image 2',
-        provider: 'openai',
-        supportsImageToImage: true,
-        supportsMultiImage: true,
-        recommended: true,
-        resolutions: ["1024x1024", "1536x1024", "1024x1536", "2048x2048"],
-        aspectRatios: ["1:1", "16:9", "9:16", "3:2", "2:3", "4:3", "3:4"]
     },
     {
         id: 'gemini-pro',

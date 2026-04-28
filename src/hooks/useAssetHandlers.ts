@@ -96,10 +96,11 @@ export const useAssetHandlers = ({
                 status: NodeStatus.SUCCESS,
                 resultUrl: url,
                 resultAspectRatio,
-                model: isVideo ? 'veo-3.1' : 'imagen-3.0-generate-002',
+                model: isVideo ? 'veo-3.1' : 'custom-image-gpt-image-2',
+                imageModel: !isVideo ? 'custom-image-gpt-image-2' : undefined,
                 videoModel: isVideo ? 'veo-3.1' : undefined,
-                aspectRatio: aspectRatio || '16:9',
-                resolution: isVideo ? 'Auto' : '1024x1024'
+                aspectRatio: aspectRatio || '1:1',
+                resolution: isVideo ? 'Auto' : '2k'
             };
 
             setNodes(prev => [...prev, newNode]);

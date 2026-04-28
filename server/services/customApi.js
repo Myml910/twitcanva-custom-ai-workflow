@@ -92,8 +92,11 @@ export async function generateCustomImage({
         const imageBlob = base64ToBlob(imageBase64);
         form.append('image', imageBlob, 'input.png');
 
-        if (resolution && resolution !== 'Auto') {
-            form.append('size', resolution);
+        const resolvedSize = resolution && resolution !== 'Auto' ? resolution : '2k';
+        form.append('size', resolvedSize);
+
+        if (aspectRatio && aspectRatio !== 'Auto') {
+        form.append('aspect_ratio', aspectRatio);
         }
 
         console.log('[CustomAPI][image edit request]', {
@@ -102,9 +105,9 @@ export async function generateCustomImage({
             prompt,
             hasImage: true,
             imageBase64Length: imageBase64.length,
-            size: resolution || '1024x1024'
+            size: resolvedSize,
+            aspect_ratio: aspectRatio && aspectRatio !== 'Auto' ? aspectRatio : undefined
         });
-
         const response = await fetch(endpoint, {
             method: 'POST',
             headers: {
@@ -138,8 +141,9 @@ export async function generateCustomImage({
     const requestBody = {
         model,
         prompt,
-        size: resolution && resolution !== 'Auto' ? resolution : '1024x1024',
-        n: 1
+        size: resolution && resolution !== 'Auto' ? resolution : '2k',
+        n: 1,
+        ...(aspectRatio && aspectRatio !== 'Auto' ? { aspect_ratio: aspectRatio } : {})
     };
 
     console.log('[CustomAPI][image generation request]', {
@@ -147,6 +151,7 @@ export async function generateCustomImage({
         model: requestBody.model,
         prompt: requestBody.prompt,
         size: requestBody.size,
+        aspect_ratio: requestBody.aspect_ratio,
         hasImage: false
     });
 

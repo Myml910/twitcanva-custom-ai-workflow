@@ -706,7 +706,7 @@ export default function App() {
     const createNode = (resultAspectRatio?: string, aspectRatio?: string) => {
       const isVideo = type === 'videos';
       // Use the original model from asset metadata, or fall back to defaults
-      const defaultModel = isVideo ? 'veo-3.1' : 'imagen-3.0-generate-002';
+      const defaultModel = isVideo ? 'veo-3.1' : 'custom-image-gpt-image-2';
       const nodeModel = model || defaultModel;
 
       const newNode: NodeData = {
@@ -1299,7 +1299,7 @@ export default function App() {
         nodeId={editorModal.nodeId || ''}
         imageUrl={editorModal.imageUrl}
         initialPrompt={nodes.find(n => n.id === editorModal.nodeId)?.prompt}
-        initialModel={nodes.find(n => n.id === editorModal.nodeId)?.imageModel || 'gemini-pro'}
+        initialModel={nodes.find(n => n.id === editorModal.nodeId)?.imageModel || 'custom-image-gpt-image-2'}
         initialAspectRatio={nodes.find(n => n.id === editorModal.nodeId)?.aspectRatio || 'Auto'}
         initialResolution={nodes.find(n => n.id === editorModal.nodeId)?.resolution || '1K'}
         initialElements={nodes.find(n => n.id === editorModal.nodeId)?.editorElements as any}
@@ -1314,7 +1314,7 @@ export default function App() {
           if (!sourceNode) return;
 
           // Get settings from source node (which were updated by the modal)
-          const imageModel = sourceNode.imageModel || 'gemini-pro';
+          const imageModel = sourceNode.imageModel || 'custom-image-gpt-image-2';
           const aspectRatio = sourceNode.aspectRatio || 'Auto';
           const resolution = sourceNode.resolution || '1K';
 
